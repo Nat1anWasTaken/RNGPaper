@@ -6,12 +6,10 @@
 # PRs will take use of testing builds.
 
 name: Build Paper
-on: [push, pull_request]
+on: [push]
 
 jobs:
     build:
-        # Only run on PRs if the source branch is on someone else's repo
-        if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -25,9 +23,16 @@ jobs:
                   java-version: ${{ matrix.java }}
                   cache: 'gradle'
                   distribution: 'temurin'
-            - name: Patch and build
+            - name: Patch without 71 and build
               run: |
-                  git config --global user.email "no-reply@github.com"
-                  git config --global user.name "Github Actions"
-                  ./gradlew applyPatches --stacktrace
-                  ./gradlew build --stacktrace
+                rm patches/server/0071-Use-a-Shared-Random-for-Entities.patch
+                git config --global user.email "no-reply@github.com"
+                git config --global user.name "Github Actions"
+                ./gradlew applyPatches --stacktrace
+                ./gradlew build --stacktrace
+            - name: Upload a Build Artifact
+              uses: actions/upload-artifact@v3.0.0
+              with:
+                name: RNGPaper
+                path: build/libs/
+            
