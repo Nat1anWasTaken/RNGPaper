@@ -19,6 +19,8 @@ jobs:
       with:
         fetch-depth: 0
     - run: gh repo sync "PaperMC/Paper"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
