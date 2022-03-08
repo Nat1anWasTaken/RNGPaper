@@ -18,12 +18,16 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - run: gh repo sync "PaperMC/Paper"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+    - name: Fork Sync
+      # You may pin to the exact commit or the version.
+      # uses: tgymnich/fork-sync@0cc6ac48fd51415e7c34e5b8823021bc952a5f5f
+      uses: tgymnich/fork-sync@v1.2.1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
-
+        # Owner of the forked repository
+        owner: PaperMC
+        # Token for the github API
+        github_token: ${{ github.token }}
+        # Branch to track
+        head: ${{ github.ref }}
+        # Branch to keep updated
+        base: ${{ github.ref }}
