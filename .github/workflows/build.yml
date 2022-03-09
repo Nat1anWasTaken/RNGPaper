@@ -28,10 +28,10 @@ jobs:
                 git config --global user.email "no-reply@github.com"
                 git config --global user.name "Github Actions"
                 ./gradlew applyPatches --stacktrace
-                ./gradlew createReobfBundlerJar --stacktrace
+                ./gradlew createReobfPaperclipJar --stacktrace
             - name: Upload a Build Artifact
               uses: actions/upload-artifact@v3.0.0
               with:
                 name: RNGPaper
-                path: build/libs/
+                path: build/libs/paper-paperclip*
             

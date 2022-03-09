@@ -26,7 +26,7 @@ jobs:
         # Owner of the forked repository
         owner: PaperMC
         # Token for the github API
-        github_token: ${{ github.token }}
+        github_token: ${{ secrets.GH_TOKEN }}
         # Branch to track
         head: ${{ github.ref }}
         # Branch to keep updated
