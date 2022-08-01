@@ -22,7 +22,7 @@ it only impacts data sent from the client.
 Set -DPaper.maxSignLength=XX to change limit or -1 to disable
 
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index ed272499b40a96efd83f1a09a063e4d65dbe48e8..32c89f89fc9dbcdc9528acf46415b4d7c6475ff3 100644
+index df6eed12d8e2b9f2027f31b4db304ba771d771ec..434458b5f4017712d3ae0d77015378ecd2f4806e 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 @@ -293,6 +293,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
@@ -33,7 +33,7 @@ index ed272499b40a96efd83f1a09a063e4d65dbe48e8..32c89f89fc9dbcdc9528acf46415b4d7
  
      public ServerGamePacketListenerImpl(MinecraftServer server, Connection connection, ServerPlayer player) {
          this.lastChatTimeStamp = new AtomicReference(Instant.EPOCH);
-@@ -3262,7 +3263,19 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
+@@ -3278,7 +3279,19 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
  
      @Override
      public void handleSignUpdate(ServerboundSignUpdatePacket packet) {
