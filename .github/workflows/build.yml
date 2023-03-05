@@ -6,7 +6,7 @@
 # PRs will take use of testing builds.
 
 name: Build Paper
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
     build:
