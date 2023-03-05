@@ -6,8 +6,6 @@
 name: Sync with Paper repo
 
 on:
-  schedule:
-  - cron: '0,30 * * * *'
   workflow_dispatch:
 
 jobs:
